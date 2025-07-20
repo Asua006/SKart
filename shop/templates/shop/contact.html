@@ -1,0 +1,44 @@
+{% extends 'shop/basic.html' %}
+
+{% block title %} Contact  {% endblock title %}
+
+{% block body %} 
+<br></br>
+{% comment %} <button  class="btn btn-dark" onclick="window.history.back()"> ← </button> {% endcomment %}
+
+<h1 class="text-center my-5">Contact Us</h1>
+<hr style="width: 700px; height: 2px; background-color: #4e32a8; border: none; margin: 0px auto 0px auto;">
+
+
+
+<div class="container mt-5">
+  
+  <form method="post">
+    {% csrf_token %}
+    
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Your Name">
+    </div>
+  
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+    </div>
+  
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone no.</label>
+      <input type="text" class="form-control" id="phone" name="phone" placeholder="phone no.">
+    </div>
+  
+    <div class="mb-3">
+      <label for="desc" class="form-label">Message</label>
+      <textarea class="form-control" id="desc" name="desc" rows="4" placeholder="Type your message here..."></textarea>
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Send Message</button>
+  </form>
+  
+</div>
+
+ {% endblock body %}

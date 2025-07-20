@@ -1,0 +1,29 @@
+{% extends 'shop/basic.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <br></br>
+   
+  <h2>Search Results for "{{ query }}"</h2>
+   <hr>
+  <div class="row">
+    {% for product in products %}
+      <div class="col-xs-12 col-sm-3 col-md-3">
+        <div class="card mb-4" style="background-color:rgba(96, 79, 194, 0.4);">
+          <img src="/media/{{ product.image }}" class="card-img-top" alt="{{ product.product_name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.product_name }}</h5>
+            <p class="card-text">{{ product.desc|truncatechars:53 }}</p>
+            <button class="btn btn-primary cart" data-product-id="{{ product.id }}">Add To Cart</button>
+            <a href="/Product/{{ product.id }}"><button class="btn btn-primary productview" style="width:100%;">Quick View</button></a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No products found.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

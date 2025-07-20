@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+nav{
+
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+
+ background: #3630a5;
+ box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+nav .navbar{
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ height: 100%;
+ max-width: 90%;
+ background: #3630a5;
+ margin: auto;
+}
+nav .navbar .logo a{
+  color: #dde9f7;
+  font-size: 36px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+nav .navbar .menu{
+  display: flex;
+}
+.navbar .menu li{
+  padding-top:20px;
+  display:inline-block;
+  list-style: none;
+  margin: 0 15px;
+}
+.navbar .menu li a{
+  color: #b0abe4;
+  font-size: 26px;
+  font-weight: 900;
+  text-decoration: none;
+
+}
+col-md-3 img{
+  width: 255px;
+  height: 35px;
+}
+section{
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  color: #3630a5;
+  font-size: 70px;
+}
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 200px;        /* or any height you prefer */
+  object-fit: cover;    /* ensures uniform look by cropping extra */
+  object-position: center center;
+  border-radius: 0px;   /* optional: for rounded corners */
+}
+
+
+.card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#Home{
+  background: #fff;
+}
+#About{
+  background: #f2f2f2;
+}
+#Category{
+  background: #e6e6e6;
+}
+#Latest{
+  background: #fff;
+}
+#Contact{
+  background: #f2f2f2;
+}
+#Feedback{
+  background: #e6e6e6;
+}
+.button a{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: #fff;
+  background: #3630a5;
+  padding: 7px 12px;;
+  font-size: 18px;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.15);
+}

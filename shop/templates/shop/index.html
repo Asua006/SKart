@@ -1,0 +1,252 @@
+{% extends 'shop/basic.html/' %}
+
+import $ from 'jquery';
+{% block css %}
+  .col-md-3 {
+    display: inline-block;
+    margin-left: -4px;
+  }
+
+  .col-md-3 img {
+    width: 255px;
+    height: 355px;
+    object-fit: cover;
+  }
+
+  .carousel-indicators .active {
+    background-color: blue;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: blue;
+  }
+
+  .carousel-inner {
+    padding: 15px;
+  }
+{% endblock %}
+
+{% block body %}
+<br></br>
+<h1 class="text-center display-1 ">Welcome to <span style="color: #4e32a8;">SKart</span></h1>
+<hr style="width: 700px; height: 2px; background-color: #4e32a8; border: none; margin: 10px auto 20px auto;">
+<h4 class="text-center text-muted fst-italic">That one shop for all your needs!</h4>
+<hr style="width: 300px; height: 1px; background-color: #4e32a8; border: none; margin: 10px auto 20px auto;">
+<br></br>
+<hr>
+
+{% comment %} 
+<div class="container-fluid "><div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+  <div class="carousel-inner">
+    <div class="carousel-item">
+      <img src="https://media.istockphoto.com/id/1325395874/vector/summer-sale-editable-template-banner-with-fluid-liquid-elements-tropical-leaves-and-bubble.jpg?s=2048x2048&w=is&k=20&c=AantXWZSOaOmADBTDeKD1ZqwIPzKrdSqstKrauG294Y="  style="height:400px; width:350px;" class="d-block w-100" alt="...">
+    </div>
+
+    <div class="carousel-item">
+      <img src="https://media.istockphoto.com/id/2155915432/photo/black-friday-tag-isolated-big-sale-logo-design-flat-vector-illustration.jpg?s=2048x2048&w=is&k=20&c=tEfb-Rw-JJHuPvgaf6_85sYF6JPVKjXcTi3tdZkYOTQ="  style="height:400px; width:350px;" class="d-block w-100" alt="...">
+    <div>
+    </div>
+    </div>
+
+    <div class="carousel-item active">
+      <img src="https://media.istockphoto.com/id/1363586680/vector/big-sale-festival-banner.jpg?s=2048x2048&w=is&k=20&c=HSKpal5QpfaGM_qeFcTWMqf2QqapbWSYb88mM33SNK0="  style="height:400px; width:350px;" class="d-block w-100" alt="...">
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div> 
+</div> {% endcomment %}
+
+
+{% load static %}
+<div class="container">
+
+  {% for prod, range, nSlides in allProds %}
+    <br></br>
+    
+    <hr>
+    <h1 class="my-4 text-center">Grab fresh deals on - <span style="color: #4e32a8;">{{ prod.0.category }}</span></h1>
+    <hr>
+   
+
+    <div id="demo{{ forloop.counter }}" class="carousel slide my-3" >
+      
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#demo{{ forloop.parentloop.counter }}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        {% for i in range %}
+          <button type="button" data-bs-target="#demo{{ forloop.counter }}" data-bs-slide-to="{{ i }}" aria-label="Slide {{ i }}"></button>
+        {% endfor %}
+      </div>
+
+      <!-- Slides -->
+      <div class="carousel-inner no-padding">
+        {% for i in prod %}
+          {% if forloop.first or forloop.counter0|divisibleby:4 %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <div class="row">
+          {% endif %}
+
+          <div class="col-xs-12 col-sm-3 col-md-3">
+            <div class="card"  style="background-color:rgba(96, 79, 194, 0.4);" style="width: 18rem;">
+              <img src="/media/{{ i.image }}" class="card-img-top" alt="{{ i.product_name }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ i.product_name }}</h5>
+                <p class="card-text">{{ i.desc|slice:"0.53" }}...</p>
+                <button class="btn btn-primary cart" data-product-id="{{ i.id }}">Add To Cart</button>
+                
+            
+                <a href="/Product/{{i.id}}"><button id="{{i.id}}" class="btn btn-primary productview" style="width:267px;">Quick View</button></a>
+              </div> 
+            </div>
+          </div>
+
+          {% if forloop.counter|divisibleby:4 or forloop.last %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <!-- Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#demo{{ forloop.counter }}" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#demo{{ forloop.counter }}" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  {% endfor %}
+</div>
+<br></br>
+
+<hr>
+<hr>
+<br></br>
+<h3 class="text-center display-5 ">Explore more at <span style="color: #4e32a8;">SKart</span></h3>
+<hr style="width: 700px; height: 2px; background-color: #4e32a8; border: none; margin: 10px auto 20px auto;">
+<h4 class="text-center text-muted fst-italic">Created by Anshuman</h4>
+<hr style="width: 300px; height: 1px; background-color: #4e32a8; border: none; margin: 10px auto 20px auto;">
+<br></br>
+<pre>{{ product_data }}</pre>
+
+
+
+<!-- ...existing code... -->
+
+<!-- Place this just before the closing </body> tag or at the end of your file -->
+{% block js %}
+<script>
+  
+                
+  document.addEventListener("DOMContentLoaded", function () {
+    let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : {};
+
+    // Function to update cart display count
+    function updateCartCount() {
+      let totalItems = 0;
+      for (let item in cart) {
+        totalItems += cart[item];
+      }
+      let cartElem = document.getElementById('Cart');
+      if (cartElem) cartElem.innerHTML = totalItems;
+    }
+
+    updateCartCount();
+
+    // Add to cart on click
+    document.querySelectorAll('.cart').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const productId = this.getAttribute('data-product-id');
+        cart[productId] = (cart[productId] || 0) + 1;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+      });
+    });
+  });
+</script>
+{% endblock %}
+{% endblock %}
+
+{% comment %} 
+<!-- Bootstrap Bundle JS (required) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}
+
+<!-- JS
+ -->
+{% block js %}
+<script>
+    
+  console.log('working');
+  if(localStorage.getItem('Cart') == null){
+  var cart = {};
+  }
+  else
+  {
+  cart = JSON.parse(localStorage.getItem('cart'));
+  document.getElementById('Cart').innerHTML = Object.keys(Cart).length;
+  }
+  $('.cart').click(function(){
+  console.log('clicked');
+  var idstr = this.id.toString();
+  console.log(idstr);
+  if (cart[idstr] !=undefined){
+  cart[idstr] = cart[idstr] + 1;
+  }
+  else
+  {
+  cart[idstr] = 1;
+  }
+  console.log(cart);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  document.getElementById('Cart').innerHTML = Object.keys(cart).length;
+  });
+  $('#popcart').popover();
+  document.getElementById("cart").setAttribute('data-content', '<h5>Cart for your items in my shopping cart</h5>');
+  
+  document.addEventListener("DOMContentLoaded", function () {
+  let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : {};
+
+  // Function to update cart display count
+  function updateCartCount() {
+    let totalItems = 0;
+    for (let item in cart) {
+      totalItems += cart[item];
+    }
+    document.getElementById('Cart').innerHTML = totalItems;
+  }
+
+  updateCartCount();
+
+  // Add to cart on click
+  $('.cart').click(function () {
+    const idstr = this.id.toString();
+    cart[idstr] = cart[idstr] ? cart[idstr] + 1 : 1;
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+  });
+
+  // Popover (optional)
+  let popcart = document.getElementById("popcart");
+  if (popcart) {
+    $('#popcart').popover();
+    popcart.setAttribute('data-content', '<h5>Cart for your items in my shopping cart</h5>');
+  }
+});
+
+
+</script>
+{% endblock %}
+
+ {% endcomment %}

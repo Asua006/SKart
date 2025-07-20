@@ -1,0 +1,16 @@
+{% extends 'shop/basic.html' %}
+
+{% block title %}Order Placed{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="alert alert-success text-center">
+        <h2>Thank you for your order!</h2>
+        <p>Your order has been placed successfully.</p>
+        {% if order_id %}
+        <p><strong>Order ID:</strong> {{ order_id }}</p>
+        {% endif %}
+        <a href="/" class="btn btn-primary mt-3">Continue Shopping</a>
+    </div>
+</div>
+{% endblock %}
